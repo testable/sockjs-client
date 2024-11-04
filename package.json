@@ -79,8 +79,6 @@
     "gulp": "gulp",
     "lint": "eslint .",
     "build": "esbuild dist/sockjs.js --bundle --format=esm --outfile=dist/sockjs-esm.js",
-    "version": "gulp release && git add -A dist lib/version.js Changelog.md",
-    "postversion": "npm publish",
-    "postpublish": "git push origin --all && git push origin --tags"
+    "version": "gulp release && git add -A dist lib/version.js Changelog.md"
   }
 }
