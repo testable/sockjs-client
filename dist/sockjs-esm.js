@@ -668,6 +668,9 @@ var require_sockjs = __commonJS({
                 debug("transport url", transportUrl);
                 var transportObj = new Transport(transportUrl, this._transUrl, options);
                 transportObj.on("message", this._transportMessage.bind(this));
+                transportObj.on("drain", function() {
+                  self.dispatchEvent(new Event("drain"));
+                });
                 transportObj.once("close", this._transportClose.bind(this));
                 transportObj.transportName = Transport.transportName;
                 this._transport = transportObj;
@@ -2780,7 +2783,7 @@ var require_sockjs = __commonJS({
           }).call(this);
         }).call(this, { env: {} });
       }, { "debug": 55, "url-parse": 61 }], 54: [function(require2, module3, exports3) {
-        module3.exports = "0.0.3";
+        module3.exports = "0.0.5";
       }, {}], 55: [function(require2, module3, exports3) {
         (function(process) {
           (function() {
