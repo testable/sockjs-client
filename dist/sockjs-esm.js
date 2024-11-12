@@ -650,6 +650,7 @@ var require_sockjs = __commonJS({
               this._connect();
             };
             SockJS.prototype._connect = function() {
+              var self2 = this;
               for (var Transport = this._transports.shift(); Transport; Transport = this._transports.shift()) {
                 debug("attempt", Transport.transportName);
                 if (Transport.needBody) {
@@ -669,7 +670,7 @@ var require_sockjs = __commonJS({
                 var transportObj = new Transport(transportUrl, this._transUrl, options);
                 transportObj.on("message", this._transportMessage.bind(this));
                 transportObj.on("drain", function() {
-                  self.dispatchEvent(new Event("drain"));
+                  self2.dispatchEvent(new Event("drain"));
                 });
                 transportObj.once("close", this._transportClose.bind(this));
                 transportObj.transportName = Transport.transportName;
